@@ -1,35 +1,46 @@
-import logo from './logo.svg';
 import './App.css';
 import { parks } from './Parks';
 import { useState } from 'react';
-import { Checkbox, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
+import { Container, Box, Grid } from '@material-ui/core';
+import { makeStyles, createStyles } from '@material-ui/core/styles';
+import { NPList } from './NPList';
+
+const useStyles = makeStyles((theme) =>
+  createStyles({
+    center: {
+      alignItems: 'center',
+      justifyContent: 'center',
+      display: 'flex'
+    },
+  }),
+);
 
 function App() {
+  const classes = useStyles();
 
   const [data, setData] = useState(parks);
   
-  const setVisited = (index) => {
-    setData(prev => [...prev, prev[index].visited = true])
-    console.log(`${data[index].name} : ${data[index].visited}`)
-  }
+  // add map, (react-simple-maps)
+  // add fake images, with potential for logos
+
+  // clean up
+
+  //center items
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <List>
-          {data.map((value, index) => {
-            return (
-              <ListItem key={index} onClick={() => setVisited(index)}>
-                <ListItemIcon>
-                  <Checkbox checked={value.visited}/>
-                  <ListItemText primary={`${value.name}`}/>
-                </ListItemIcon>
-              </ListItem>
-            )
-          })}
-        </List>
-      </header>
-    </div>
+    <Container>
+      <Box>
+        <Grid container>
+          <Grid item lg={12} md={12} sm={12} p={5}>
+            <div className={classes.center}>
+              <NPList data={data} setData={setData}/>
+            </div>
+          </Grid>
+        </Grid>
+
+      </Box>
+
+    </Container>   
   );
 }
 
