@@ -1,22 +1,33 @@
 import logo from './logo.svg';
 import './App.css';
+import { parks } from './Parks';
+import { useState } from 'react';
+import { Checkbox, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
 
 function App() {
+
+  const [data, setData] = useState(parks);
+  
+  const setVisited = (index) => {
+    setData(prev => [...prev, prev[index].visited = true])
+    console.log(`${data[index].name} : ${data[index].visited}`)
+  }
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <List>
+          {data.map((value, index) => {
+            return (
+              <ListItem key={index} onClick={() => setVisited(index)}>
+                <ListItemIcon>
+                  <Checkbox checked={value.visited}/>
+                  <ListItemText primary={`${value.name}`}/>
+                </ListItemIcon>
+              </ListItem>
+            )
+          })}
+        </List>
       </header>
     </div>
   );
