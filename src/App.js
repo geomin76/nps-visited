@@ -24,14 +24,13 @@ function App() {
   // add fake images, with potential for logos
 
   // clean up
-
   //center items
 
   return (
     <Container>
       <Box>
         <Grid container>
-          <Grid item lg={12} md={12} sm={12} p={5}>
+          <Grid item lg={12} md={12} sm={12}>
             <div className={classes.center}>
               <NPList data={data} setData={setData}/>
             </div>
