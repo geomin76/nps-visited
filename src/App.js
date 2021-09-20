@@ -19,6 +19,16 @@ function App() {
   const classes = useStyles();
 
   const [data, setData] = useState(parks);
+
+  const countVisitedParks = () => {
+    let visited = 0;
+    for (var i = 0; i < parks.length; i++) {
+      if (parks[i].visited === true) {
+        visited++;
+      }
+    }
+    return visited;
+  }
   
   // add map, (react-simple-maps)
   // add fake images, with potential for logos
@@ -34,6 +44,7 @@ function App() {
             <div className={classes.center}>
               <NPList data={data} setData={setData}/>
             </div>
+            <p>{countVisitedParks()}/{parks.length}</p>
           </Grid>
         </Grid>
 
