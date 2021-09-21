@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Container, Box, Grid } from '@material-ui/core';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { NPList } from './NPList';
+import { ParkPoster } from './ParkPoster';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -37,14 +38,18 @@ function App() {
   //center items
 
   return (
-    <Container>
+    <Container maxWidth="lg">
+      <ParkPoster />
+      <br/>
       <Box>
         <Grid container>
           <Grid item lg={12} md={12} sm={12}>
             <div className={classes.center}>
               <NPList data={data} setData={setData}/>
             </div>
-            <p>{countVisitedParks()}/{parks.length}</p>
+            <div className={classes.center}>
+              <p>{countVisitedParks()}/{parks.length}</p>
+            </div>
           </Grid>
         </Grid>
 
