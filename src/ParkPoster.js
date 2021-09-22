@@ -15,7 +15,6 @@ export const ParkPoster = ({ data, setData }) => {
         })
         let newData = [...data];
         newData[index].visited = !data[index].visited;
-        console.log(newData[index].visited)
         setData(newData);
         console.log(`${data[index].name} : ${data[index].visited}`)
     }
@@ -31,7 +30,7 @@ export const ParkPoster = ({ data, setData }) => {
                             {
                                 row.map((col, index2) => {
                                     return (
-                                        <Col xl lg md><Image className="p-1" onClick={() => setVisited(col.name)} src={col.url} width="100%"/></Col>
+                                        <Col xl lg md><Image className="p-1" style={{ filter: col.visited ? "" : "grayscale(100%)" }} onClick={() => setVisited(col.name)} src={col.url} width="100%"/></Col>
                                     )
                                     
                                 })
@@ -56,7 +55,7 @@ export const ParkPoster = ({ data, setData }) => {
                             {
                                 row.map((col) => {
                                     return (
-                                        <Col sm={4} xs={4}><Image className="p-1" onClick={() => setVisited(col.name)} src={col.url} width="100%"/></Col>
+                                        <Col sm={4} xs={4}><Image className="p-1" style={{ filter: col.visited ? "" : "grayscale(100%)" }} onClick={() => setVisited(col.name)} src={col.url} width="100%"/></Col>
                                     )
                                     
                                 })
@@ -72,15 +71,12 @@ export const ParkPoster = ({ data, setData }) => {
 
     return (
         <>
-        <BrowserView>
-            {renderBrowserView()}
-        </BrowserView>
-        <MobileView>
-            {renderMobileView()}
-        </MobileView>
-        
-        
-
+            <BrowserView>
+                {renderBrowserView()}
+            </BrowserView>
+            <MobileView>
+                {renderMobileView()}
+            </MobileView>
         </>
     )
 }
