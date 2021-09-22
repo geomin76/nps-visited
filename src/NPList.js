@@ -22,7 +22,7 @@ export const NPList = ({ data, setData }) => {
         newData[index].visited = !prevStatus;
         return newData;
       })
-        console.log(`${data[index].name} : ${data[index].visited}`)
+      console.log(`${data[index].name} : ${data[index].visited}`)
     }
 
     return (

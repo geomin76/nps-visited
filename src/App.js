@@ -39,7 +39,7 @@ function App() {
 
   return (
     <Container maxWidth="lg">
-      <ParkPoster />
+      <ParkPoster data={data} setData={setData} />
       <br/>
       <Box>
         <Grid container>
