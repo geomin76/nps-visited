@@ -30,12 +30,6 @@ function App() {
     }
     return visited;
   }
-  
-  // add map, (react-simple-maps)
-  // add fake images, with potential for logos
-
-  // clean up
-  //center items
 
   return (
     <Container maxWidth="lg">
