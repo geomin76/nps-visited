@@ -2,7 +2,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { Image } from 'react-bootstrap';
-import {BrowserView, MobileView} from 'react-device-detect';
 var _ = require('lodash');
 
 export const ParkPoster = ({ data, setData }) => {
@@ -20,7 +19,7 @@ export const ParkPoster = ({ data, setData }) => {
     }
 
     const renderBrowserView = () => {
-        const rows = _.chunk(data, 9);
+        const rows = _.chunk(data, 7);
         return (
             <>
             {
@@ -30,32 +29,7 @@ export const ParkPoster = ({ data, setData }) => {
                             {
                                 row.map((col, index2) => {
                                     return (
-                                        <Col xl lg md><Image className="p-1" style={{ filter: col.visited ? "" : "grayscale(100%)" }} onClick={() => setVisited(col.name)} src={col.url} width="100%"/></Col>
-                                    )
-                                    
-                                })
-                            }
-                        </Row>
-                    )
-                    
-                })
-            }
-            </>
-        )
-    }
-
-    const renderMobileView = () => {
-        const rows = _.chunk(data, 21);
-        return (
-            <>
-            {
-                rows.map((row) => {
-                    return (
-                        <Row>
-                            {
-                                row.map((col) => {
-                                    return (
-                                        <Col sm={4} xs={4}><Image className="p-1" style={{ filter: col.visited ? "" : "grayscale(100%)" }} onClick={() => setVisited(col.name)} src={col.url} width="100%"/></Col>
+                                        <Col xl lg md sm xs><div onClick={() => setVisited(col.name)}><Image className="p-1" style={{ filter: col.visited ? "" : "grayscale(100%)" }}  src={col.url} width="100%"/></div></Col>
                                     )
                                     
                                 })
@@ -71,12 +45,7 @@ export const ParkPoster = ({ data, setData }) => {
 
     return (
         <>
-            <BrowserView>
-                {renderBrowserView()}
-            </BrowserView>
-            <MobileView>
-                {renderMobileView()}
-            </MobileView>
+            {renderBrowserView()}
         </>
     )
 }

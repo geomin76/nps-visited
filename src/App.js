@@ -6,6 +6,7 @@ import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { NPList } from './NPList';
 import { ParkPoster } from './ParkPoster';
 import html2canvas from "html2canvas";
+import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -16,6 +17,17 @@ const useStyles = makeStyles((theme) =>
     },
   }),
 );
+
+/**
+ * 
+ * Very similar to US maps, make the poster and check list at bottom. 
+ * For the poster, allow zoom in and out, where users can click. Will need poster to be static
+ * When they want, they can download image and have the poster of all parks visited
+ * 
+ * 
+ * https://morioh.com/p/bca9c144354c
+ * 
+ */
 
 const App = () => {
   const classes = useStyles();
@@ -61,7 +73,26 @@ const App = () => {
   return (
     <div ref={printRef}>
       <Container maxWidth="lg">
-        <ParkPoster data={data} setData={setData} />
+      <TransformWrapper 
+        initialScale={1}
+        initialPositionX={0}
+        initialPositionY={0}>
+      {({ zoomIn, zoomOut, resetTransform, ...rest }) => (
+        <React.Fragment>
+          <div className="tools">
+            <button onClick={() => zoomIn()}>+</button>
+            <button onClick={() => zoomOut()}>-</button>
+            <button onClick={() => resetTransform()}>x</button>
+          </div>
+          <TransformComponent>
+            <ParkPoster data={data} setData={setData} />
+          </TransformComponent>
+        </React.Fragment>
+        
+      )}
+      </TransformWrapper>
+       
+
         <br/>
         <Box>
           <Grid container>
