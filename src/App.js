@@ -5,7 +5,7 @@ import { Container, Box, Grid } from '@material-ui/core';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { NPList } from './NPList';
 import { ParkPoster } from './ParkPoster';
-import html2canvas from "html2canvas";
+import domtoimage from 'dom-to-image';
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 
 const useStyles = makeStyles((theme) =>
@@ -19,23 +19,16 @@ const useStyles = makeStyles((theme) =>
 );
 
 /**
- * 
- * Very similar to US maps, make the poster and check list at bottom. 
- * For the poster, allow zoom in and out, where users can click. Will need poster to be static
- * When they want, they can download image and have the poster of all parks visited
- * 
- * 
- * https://morioh.com/p/bca9c144354c
- * 
+ * TODO:
+ * figure out CSS for poster, to make sure it is stagnant for mobile + web (design the poster) and fix scaling
+ * pretty up buttons and list and zoom component
+ * fix download image to allow for mobile
  */
 
 const App = () => {
   const classes = useStyles();
 
   const [data, setData] = useState(parks);
-
-  const printRef = React.useRef();
-
 
   const countVisitedParks = () => {
     let visited = 0;
@@ -48,31 +41,17 @@ const App = () => {
   }
 
   const handleDownloadImage = async () => {
-    const element = printRef.current
-    const canvas = await html2canvas(element, {
-      useCORS: true,
-      scale: 4
+    domtoimage.toJpeg(document.getElementById('poster'), { quality: 1 })
+    .then(function (dataUrl) {
+        var link = document.createElement('a');
+        link.download = 'nps-poster.jpg';
+        link.href = dataUrl;
+        link.click();
     });
- 
-    const data = canvas.toDataURL('image/png');
-    const link = document.createElement('a');
- 
-    if (typeof link.download === 'string') {
-      link.href = data;
-      link.download = 'image.jpg';
- 
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    } else {
-      window.open(data);
-    }
-  };
-  
+  }
 
   return (
-    <div ref={printRef}>
-      <Container maxWidth="lg">
+    <Container maxWidth="lg">
       <TransformWrapper 
         initialScale={1}
         initialPositionX={0}
@@ -85,7 +64,9 @@ const App = () => {
             <button onClick={() => resetTransform()}>x</button>
           </div>
           <TransformComponent>
-            <ParkPoster data={data} setData={setData} />
+            <div id="poster">
+              <ParkPoster data={data} setData={setData} />
+            </div>
           </TransformComponent>
         </React.Fragment>
         
@@ -113,8 +94,7 @@ const App = () => {
   
 
 
-      </Container> 
-    </div>
+    </Container> 
       
   );
 }
