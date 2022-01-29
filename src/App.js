@@ -72,7 +72,6 @@ const App = () => {
         
       )}
       </TransformWrapper>
-       
 
         <br/>
         <Box>
