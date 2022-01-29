@@ -1,0 +1,19 @@
+.poster {
+    display: block;
+    width: 80vw;
+    /* height: '80%'; */
+    margin: auto;
+    background-color:aqua;
+    overflow: hidden;
+    padding: 30px;
+}
+
+.inner {
+    display: flex;
+    justify-content: center;
+}
+
+.posterImage {
+    padding: 5px;
+    width: 10vw;
+}
