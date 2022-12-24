@@ -35,9 +35,9 @@ export const NPList = ({ data, setData, countVisitedParks }) => {
         return (
           <ListItem key={index} >
             <ListItemButton onClick={() => setVisited(index)}>
-              <Box sx={{ display: "flex", alignItems:"center", justifyContent:"center", height: "100px", width: "300px", borderStyle: "solid", backgroundColor: value.visited ? "green" : "white" }}>
+              <Box sx={{ display: "flex", alignItems:"center", justifyContent:"center", height: "90px", width: "300px", borderStyle: "solid", backgroundColor: value.visited ? value.color : "white" }}>
                 <ListItemIcon>
-                  <ListItemText primary={`${value.name}`} />
+                  <p style={{fontWeight: "bold"}}>{value.name}</p>
                 </ListItemIcon>
               </Box>
             </ListItemButton>
