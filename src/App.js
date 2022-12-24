@@ -35,11 +35,11 @@ const App = () => {
         <Box>
           <Grid container>
             <Grid item lg={12} md={12} sm={12}>
-              <div className={classes.center}>
+              {/* <div className={classes.center}>
                   <h2>You've explored {countVisitedParks()} National Parks!</h2>
-              </div>
+              </div> */}
               <div className={classes.center}>
-                <NPList data={data} setData={setData}/>
+                <NPList data={data} setData={setData} countVisitedParks={countVisitedParks}/>
               </div>
             </Grid>
           </Grid>
