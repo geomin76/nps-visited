@@ -1,4 +1,4 @@
-import { Checkbox, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
+import { Checkbox, List, ListItem, ListItemIcon, ListItemText, Box, Button } from '@material-ui/core';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) =>
@@ -14,7 +14,6 @@ const useStyles = makeStyles((theme) =>
 export const NPList = ({ data, setData }) => {
     const classes = useStyles();
 
-
     const setVisited = (index) => {
       setData(prev => {
         const newData = [...prev]
@@ -26,17 +25,21 @@ export const NPList = ({ data, setData }) => {
     }
 
     return (
-        <List className={classes.list}>
+      <List className={classes.list}>
         {data.map((value, index) => {
           return (
-            <ListItem key={index} onClick={() => setVisited(index)}>
-              <ListItemIcon>
-                <Checkbox checked={value.visited}/>
-                <ListItemText primary={`${value.name}`}/>
-              </ListItemIcon>
-            </ListItem>
+              <ListItem key={index} onClick={() => setVisited(index)}>
+                <ListItemIcon>
+                  <Checkbox checked={value.visited}/>
+                  <ListItemText primary={`${value.name}`}/>
+                </ListItemIcon>
+              </ListItem>
+
+              // <Box sx={{ height: "100px", width: "300px", borderStyle: "solid", backgroundColor: value.visited ? "green" : "white"}}>
+
+            
           )
         })}
-      </List>
+      </List>   
     )
 }
