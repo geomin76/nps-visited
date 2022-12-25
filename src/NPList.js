@@ -1,4 +1,4 @@
-import { List, ListItem, ListItemIcon, ListItemText, Box, ListSubheader, ListItemButton } from '@mui/material';
+import { List, ListItem, ListItemIcon, Box, ListSubheader, ListItemButton } from '@mui/material';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) =>
@@ -25,19 +25,19 @@ export const NPList = ({ data, setData, countVisitedParks }) => {
   }
 
   return (
-    <List>
+    <List alignItems="center">
       <ListSubheader>
         <div className={classes.center}>
-          <h3>You've explored {countVisitedParks()} National Parks!</h3>
+          <p style={{fontWeight: "700", fontSize: "1.2em"}}>You've explored <span style={{fontWeight: "400", fontSize: "xxx-large"}}>{countVisitedParks()}</span>&nbsp; National Parks!</p>
         </div>
       </ListSubheader>
       {data.map((value, index) => {
         return (
           <ListItem key={index} >
-            <ListItemButton onClick={() => setVisited(index)}>
-              <Box sx={{ display: "flex", alignItems:"center", justifyContent:"center", height: "90px", width: "300px", borderStyle: "solid", backgroundColor: value.visited ? value.color : "white" }}>
+            <ListItemButton onClick={() => setVisited(index)} alignItems="center">
+              <Box sx={{ display: "flex", alignItems:"center", justifyContent:"center", height: "75px", width: "300px", borderStyle: "solid", borderWidth: "thin", borderRadius: "10px", backgroundColor: value.visited ? value.color : "white" }}>
                 <ListItemIcon>
-                  <p style={{fontWeight: "bold"}}>{value.name}</p>
+                  <p>{value.name}</p>
                 </ListItemIcon>
               </Box>
             </ListItemButton>
