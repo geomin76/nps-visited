@@ -41,7 +41,6 @@ const App = () => {
             </Grid>
           </Grid>
         </Box>
-
     </Container> 
       
   );
