@@ -326,7 +326,7 @@ var parks = [
         "url": "./public/crater-lake-national-park_250x.jpg",
         "coordinates": "47.97°N 123.50°W",
         "visited": false,
-        "color": "#536d31"
+        "color": "#94b6e8"
     },
     {
         "name": "Petrified Forest",
