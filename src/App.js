@@ -41,7 +41,7 @@ const App = () => {
   return (
     <Container maxWidth="lg">
       <ListSubheader>
-        <div className={classes.center}>
+        <div className={classes.center} style={{backgroundColor:"white"}}>
           <p style={{fontWeight: "700", fontSize: "1.2em"}}>You've explored <span style={{fontWeight: "400", fontSize: "3em"}}>{countVisitedParks()}</span>&nbsp; National Parks!</p>
         </div>
       </ListSubheader>
