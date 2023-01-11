@@ -1,9 +1,10 @@
 import './App.css';
 import { parks } from './Parks';
 import React, { useState } from 'react';
-import { Container, Box, Grid } from '@material-ui/core';
+import { Container, Box, Grid, ListSubheader } from '@material-ui/core';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { NPList } from './NPList';
+import { Map } from './Map';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -11,6 +12,13 @@ const useStyles = makeStyles((theme) =>
       alignItems: 'center',
       justifyContent: 'center',
       display: 'flex'
+    },
+    map: {
+      alignItems: 'center',
+      justifyContent: 'center',
+      display: 'flex',
+      position: 'sticky',
+      top: 0
     },
   }),
 );
@@ -32,17 +40,23 @@ const App = () => {
 
   return (
     <Container maxWidth="lg">
-      <Box>
-        <Grid container spacing={0} direction="column"
-          alignItems="center"
-          justifyContent="center">
-          <Grid item lg={12} md={12} sm={12}>
-            <div className={classes.center}>
-              <NPList data={data} setData={setData} countVisitedParks={countVisitedParks} />
-            </div>
-          </Grid>
+      <ListSubheader>
+        <div className={classes.center}>
+          <p style={{fontWeight: "700", fontSize: "1.2em"}}>You've explored <span style={{fontWeight: "400", fontSize: "3em"}}>{countVisitedParks()}</span>&nbsp; National Parks!</p>
+        </div>
+      </ListSubheader>
+      <Grid container spacing={0}>
+        <Grid item xl={9} lg={9} md={9} sm={12} xs={12}>
+          <div className={classes.map}>
+            <Map />
+          </div>
         </Grid>
-      </Box>
+        <Grid item xl={3} lg={3} md={3} sm={12} xs={12}>
+          <div className={classes.center}>
+            <NPList data={data} setData={setData} countVisitedParks={countVisitedParks} />
+          </div>
+        </Grid>
+      </Grid>
     </Container>
 
   );
