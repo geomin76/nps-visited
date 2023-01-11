@@ -28,7 +28,7 @@ export const NPList = ({ data, setData, countVisitedParks }) => {
     <List alignItems="center">
       <ListSubheader>
         <div className={classes.center}>
-          <p style={{fontWeight: "700", fontSize: "1.2em"}}>You've explored <span style={{fontWeight: "400", fontSize: "xxx-large"}}>{countVisitedParks()}</span>&nbsp; National Parks!</p>
+          <p style={{fontWeight: "700", fontSize: "1.2em"}}>You've explored <span style={{fontWeight: "400", fontSize: "3em"}}>{countVisitedParks()}</span>&nbsp; National Parks!</p>
         </div>
       </ListSubheader>
       {data.map((value, index) => {
