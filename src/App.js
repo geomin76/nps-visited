@@ -32,17 +32,19 @@ const App = () => {
 
   return (
     <Container maxWidth="lg">
-        <Box>
-          <Grid container>
-            <Grid item lg={12} md={12} sm={12}>
-              <div className={classes.center}>
-                <NPList data={data} setData={setData} countVisitedParks={countVisitedParks}/>
-              </div>
-            </Grid>
+      <Box>
+        <Grid container spacing={0} direction="column"
+          alignItems="center"
+          justifyContent="center">
+          <Grid item lg={12} md={12} sm={12}>
+            <div className={classes.center}>
+              <NPList data={data} setData={setData} countVisitedParks={countVisitedParks} />
+            </div>
           </Grid>
-        </Box>
-    </Container> 
-      
+        </Grid>
+      </Box>
+    </Container>
+
   );
 }
 
