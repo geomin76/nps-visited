@@ -39,25 +39,28 @@ const App = () => {
   }
 
   return (
-    <Container maxWidth="lg">
+    <>
       <ListSubheader>
-        <div className={classes.center}>
-          <p style={{fontWeight: "700", fontSize: "1.2em"}}>You've explored <span style={{fontWeight: "400", fontSize: "3em"}}>{countVisitedParks()}</span>&nbsp; National Parks!</p>
+        <div className={classes.center} style={{ backgroundColor: "white" }}>
+          <p style={{ fontWeight: "700", fontSize: "1.2em" }}>You've explored <span style={{ fontWeight: "400", fontSize: "3em" }}>{countVisitedParks()}</span>&nbsp; National Parks!</p>
         </div>
       </ListSubheader>
-      <Grid container spacing={0}>
-        <Grid item xl={9} lg={9} md={9} sm={12} xs={12}>
-          <div className={classes.map}>
-            <Map />
-          </div>
+      <Container maxWidth="lg">
+        <Grid container spacing={0}>
+          <Grid item xl={9} lg={9} md={9} sm={12} xs={12}>
+            <div className={classes.map}>
+              <Map />
+            </div>
+          </Grid>
+          <Grid item xl={3} lg={3} md={3} sm={12} xs={12} >
+            <div className={classes.center}>
+              <NPList data={data} setData={setData} countVisitedParks={countVisitedParks} />
+            </div>
+          </Grid>
         </Grid>
-        <Grid item xl={3} lg={3} md={3} sm={12} xs={12}>
-          <div className={classes.center}>
-            <NPList data={data} setData={setData} countVisitedParks={countVisitedParks} />
-          </div>
-        </Grid>
-      </Grid>
-    </Container>
+      </Container>
+    </>
+
 
   );
 }

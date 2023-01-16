@@ -1,18 +1,19 @@
 import NPSMap from './nps.png'
+import DeleteIcon from '@mui/icons-material/Delete';
 
 export const Map = () => {
     return (
         <>
             <div style={{display: "inline-block", position: "relative"}}>
-                <img src={NPSMap} width={"100%"} height={"100%"} />
-                <svg viewBox="0 0 200 200" style={{position: "absolute", top: "20%", left: "50.5%"}}>
-                    <circle cx="10" cy="10" r="10" fill="rebeccapurple" />
+                <img src={NPSMap} width={"100%"} height={"50%"} />
+                <svg viewBox="0 0 100 100" style={{position: "absolute", top: "13.4%", left: "40%"}}>
+                    <DeleteIcon width="5%" />
                 </svg>
-                <svg viewBox="0 0 200 200" style={{position: "absolute", top: "20%", left: "40%"}}>
-                    <circle cx="10" cy="10" r="5" fill="rebeccapurple" />
+                <svg viewBox="0 0 100 100" style={{position: "absolute", top: "13.4%", left: "50%"}}>
+                    <DeleteIcon width="5%" />
                 </svg>
-                <svg viewBox="0 0 200 200" style={{position: "absolute", top: "50.52%", left: "50.2%"}}>
-                    <circle cx="10" cy="10" r="5" fill="rebeccapurple" />
+                <svg viewBox="0 0 100 100" style={{position: "absolute", top: "20.4%", left: "30%"}}>
+                    <DeleteIcon width="5%" />
                 </svg>
             </div>
 
