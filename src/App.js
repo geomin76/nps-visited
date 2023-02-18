@@ -42,7 +42,7 @@ const App = () => {
     <>
       <ListSubheader>
         <div className={classes.center} style={{ backgroundColor: "white" }}>
-          <p style={{ fontWeight: "700", fontSize: "1.2em" }}>You've explored <span style={{ fontWeight: "400", fontSize: "3em" }}>{countVisitedParks()}</span>&nbsp; National Parks!</p>
+          <p style={{ fontWeight: "700", fontSize: "1.2em" }}>You've explored <span style={{ fontWeight: "400", fontSize: "3em" }}>{countVisitedParks()}</span>&nbsp; US National Parks!</p>
         </div>
       </ListSubheader>
       <Container maxWidth="lg">
