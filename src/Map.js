@@ -12,9 +12,10 @@ export const Map = () => {
                 <svg viewBox="0 0 100 100" style={{ position: "absolute", top: "23.4%", left: "30%" }}>
                     <DeleteIcon width="5%" />
                 </svg> */}
-                <svg viewBox="0 0 100 100" style={{ position: "absolute", top: "25.4%", left: "30%" }}>
+                <svg viewBox="0 0 100 100" style={{ position: "absolute", top: "30.4%", left: "30%" }}>
                     <DeleteIcon width="5%" />
                 </svg>
+
             </div>
 
         </>
