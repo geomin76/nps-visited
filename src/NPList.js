@@ -1,18 +1,6 @@
 import { List, ListItem, ListItemIcon, Box, ListItemButton } from '@mui/material';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) =>
-  createStyles({
-    center: {
-      alignItems: 'center',
-      justifyContent: 'center',
-      display: 'flex'
-    },
-  }),
-);
-
-export const NPList = ({ data, setData, countVisitedParks }) => {
-  const classes = useStyles();
+export const NPList = ({ data, setData }) => {
 
   const setVisited = (index) => {
     setData(prev => {
@@ -27,9 +15,9 @@ export const NPList = ({ data, setData, countVisitedParks }) => {
     <List alignItems="center" disablePadding>
       {data.map((value, index) => {
         return (
-          <ListItem key={index} style={{paddingTop: "0", paddingBottom: "0"}}>
-            <ListItemButton onClick={() => setVisited(index)} alignItems="center">
-              <Box sx={{ display: "flex", alignItems:"center", justifyContent:"center", height: "75px", width: "300px", borderStyle: "solid", borderWidth: "thin", borderRadius: "10px", backgroundColor: value.visited ? value.color : "white" }}>
+          <ListItem key={index} style={{ paddingTop: "0", paddingBottom: "0" }}>
+            <ListItemButton onClick={() => setVisited(index)}>
+              <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", height: "75px", width: "295px", borderStyle: "solid", borderWidth: "thin", borderRadius: "10px", backgroundColor: value.visited ? value.color : "white" }}>
                 <ListItemIcon>
                   <p>{value.name}</p>
                 </ListItemIcon>
