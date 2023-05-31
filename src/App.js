@@ -1,10 +1,10 @@
 import './App.css';
 import { ParksList, TabPanel, a11yProps, countVisitedParks } from './Service';
 import React, { useState } from 'react';
-import { Container, Box, Grid, ListSubheader } from '@material-ui/core';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
+import { Container, Grid, Typography } from '@material-ui/core';
+import { makeStyles, createStyles, createTheme, ThemeProvider } from '@material-ui/core/styles';
 import { NPList } from './NPList';
-import { Tab, Tabs, Typography } from '@mui/material';
+import { Tab, Tabs } from '@mui/material';
 import MapOutlinedIcon from '@mui/icons-material/MapOutlined';
 import ChecklistOutlinedIcon from '@mui/icons-material/ChecklistOutlined';
 
@@ -25,6 +25,18 @@ const useStyles = makeStyles((theme) =>
   }),
 );
 
+const theme = createTheme();
+
+theme.typography.h3 = {
+  fontWeight: "300",
+  '@media (min-width:700px)': {
+    fontSize: '1.7rem',
+  },
+  [theme.breakpoints.up('md')]: {
+    fontSize: '2.5rem',
+  },
+};
+
 const App = () => {
   const classes = useStyles();
 
@@ -40,7 +52,9 @@ const App = () => {
       <Container maxWidth="xl">
         <Grid container className={classes.center}>
           <Grid sm={12} className={classes.center}>
-            <p style={{ fontWeight: "500", fontSize: "2em" }}>You've explored <span style={{ fontWeight: "400", fontSize: "3em" }}>{countVisitedParks(ParksList)}</span>&nbsp; US National Parks!</p>
+            <ThemeProvider theme={theme}>
+              <Typography variant="h3">You've explored <span style={{ fontWeight: "400", fontSize: "3em" }}>{countVisitedParks(ParksList)}</span>&nbsp; US National Parks!</Typography>
+            </ThemeProvider>
           </Grid>
           <Grid sm={12} className={classes.center}>
             <Tabs value={value} onChange={handleChange}>
