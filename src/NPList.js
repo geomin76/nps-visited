@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) =>
   }),
 );
 
-export const NPList = ({ data, setData, countVisitedParks }) => {
+export const NPList = ({ data, setData }) => {
   const classes = useStyles();
 
   const setVisited = (index) => {
@@ -27,9 +27,9 @@ export const NPList = ({ data, setData, countVisitedParks }) => {
     <List alignItems="center" disablePadding>
       {data.map((value, index) => {
         return (
-          <ListItem key={index} style={{paddingTop: "0", paddingBottom: "0"}}>
-            <ListItemButton onClick={() => setVisited(index)} alignItems="center">
-              <Box sx={{ display: "flex", alignItems:"center", justifyContent:"center", height: "75px", width: "300px", borderStyle: "solid", borderWidth: "thin", borderRadius: "10px", backgroundColor: value.visited ? value.color : "white" }}>
+          <ListItem key={index} style={{ paddingTop: "0", paddingBottom: "0" }}>
+            <ListItemButton onClick={() => setVisited(index)}>
+              <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", height: "75px", width: "295px", borderStyle: "solid", borderWidth: "thin", borderRadius: "10px", backgroundColor: value.visited ? value.color : "white" }}>
                 <ListItemIcon>
                   <p>{value.name}</p>
                 </ListItemIcon>
