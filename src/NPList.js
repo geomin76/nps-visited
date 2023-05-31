@@ -1,18 +1,6 @@
 import { List, ListItem, ListItemIcon, Box, ListItemButton } from '@mui/material';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
-
-const useStyles = makeStyles((theme) =>
-  createStyles({
-    center: {
-      alignItems: 'center',
-      justifyContent: 'center',
-      display: 'flex'
-    },
-  }),
-);
 
 export const NPList = ({ data, setData }) => {
-  const classes = useStyles();
 
   const setVisited = (index) => {
     setData(prev => {
