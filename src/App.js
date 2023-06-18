@@ -7,6 +7,8 @@ import { NPList } from './NPList';
 import { Tab, Tabs } from '@mui/material';
 import MapOutlinedIcon from '@mui/icons-material/MapOutlined';
 import ChecklistOutlinedIcon from '@mui/icons-material/ChecklistOutlined';
+import InsertPhotoOutlinedIcon from '@mui/icons-material/InsertPhotoOutlined';
+import { NPMap } from './NPMap';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -60,6 +62,7 @@ const App = () => {
             <Tabs value={value} onChange={handleChange}>
               <Tab icon={<ChecklistOutlinedIcon />} {...a11yProps(0)} />
               <Tab icon={<MapOutlinedIcon />} {...a11yProps(1)} />
+              <Tab icon={<InsertPhotoOutlinedIcon />} {...a11yProps(2)} />
             </Tabs>
           </Grid>
         </Grid>
@@ -72,7 +75,13 @@ const App = () => {
           </Grid>
         </TabPanel>
         <TabPanel value={value} index={1}>
-          <p>
+          <Grid container className={classes.center}>
+            <Grid sm={12} className={classes.center}>
+              <NPMap data={data} setData={setData} />
+            </Grid>
+          </Grid>
+
+          {/* <p>
             Instead of a full US-map, divide into sections and then allow user to select and click on each subregion, then pick national parks
           </p>
           <p>
@@ -94,7 +103,17 @@ const App = () => {
             https://www.nps.gov/aboutus/images/NPS-Unified-Regions-Map.jpg?maxwidth=1300&maxheight=1300&autorotate=false
             <br/>
             https://www.researchgate.net/profile/Vincent-Santucci/publication/328761204/figure/fig3/AS:689936000888835@1541504969307/Map-showing-the-seven-regions-of-the-US-National-Park-Service.ppm
-          </p>
+          </p> */}
+
+        </TabPanel>
+        <TabPanel value={value} index={2}>
+          <Grid container className={classes.center}>
+            <Grid sm={12} className={classes.center}>
+              <div style={{ paddingTop: "10px" }}>
+                <img src="/npposter.jpg" width="100%" />
+              </div>
+            </Grid>
+          </Grid>
         </TabPanel>
       </Container>
     </>
