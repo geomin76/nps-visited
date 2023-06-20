@@ -9,6 +9,7 @@ import MapOutlinedIcon from '@mui/icons-material/MapOutlined';
 import ChecklistOutlinedIcon from '@mui/icons-material/ChecklistOutlined';
 import InsertPhotoOutlinedIcon from '@mui/icons-material/InsertPhotoOutlined';
 import { NPMap } from './NPMap';
+import { NPPoster } from './NPPoster';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -107,13 +108,8 @@ const App = () => {
 
         </TabPanel>
         <TabPanel value={value} index={2}>
-          <Grid container className={classes.center}>
-            <Grid sm={12} className={classes.center}>
-              <div style={{ paddingTop: "10px" }}>
-                <img src="/npposter.jpg" width="100%" />
-              </div>
-            </Grid>
-          </Grid>
+              <NPPoster data={data} setData={setData}/>
+          {/* <img src="./npposter.jpg" width={"100%"}/> */}
         </TabPanel>
       </Container>
     </>
