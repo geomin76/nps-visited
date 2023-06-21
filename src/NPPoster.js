@@ -1,6 +1,7 @@
-import { Container, Grid, Stack, ThemeProvider, Typography, createTheme, responsiveFontSizes } from '@mui/material';
+import { Container, Grid, ThemeProvider, Typography, createTheme, responsiveFontSizes } from '@mui/material';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
-import { ParksList, countVisitedParks } from './Service';
+import { ParksList, countVisitedParks, setVisited } from './Service';
+import { useEffect, useState } from 'react';
 
 const useStyles = makeStyles((theme) =>
     createStyles({
@@ -22,57 +23,44 @@ const useStyles = makeStyles((theme) =>
 let theme = createTheme();
 theme = responsiveFontSizes(theme);
 
-
 export const NPPoster = ({ data, setData }) => {
+
+    const [temp, setTemp] = useState(data);
+
+    useEffect(() => {
+        setTemp(data)
+    }, [data])
+
     const classes = useStyles();
-
-
-    const setVisited = (index) => {
-        setData(prev => {
-            const newData = [...prev]
-            const prevStatus = newData[index].visited
-            newData[index].visited = !prevStatus;
-            return newData;
-        })
-    }
-
-    const rows = []
-    // rows
-    for (let i = 0; i < 7; i++) {
-        // columns
-        rows.push(data.slice(i, i + 9))
-    }
 
     return (
         <>
-            <Container maxWidth="xl" style={{paddingTop: "3%"}}>
-                <div style={{backgroundColor: "burlywood"}}>
+            <Container maxWidth="xl" style={{ paddingTop: "3%" }}>
+                <div style={{ backgroundColor: "burlywood" }}>
                     <div style={{ paddingTop: "7%", paddingBottom: "5%" }}>
                         <ThemeProvider theme={theme}>
                             <Typography variant="h2" className={classes.center}>US National Parks</Typography>
                         </ThemeProvider>
-                        <Typography variant="p" className={classes.center}>{countVisitedParks(ParksList)} / {ParksList.length}</Typography>
-
+                        <Typography variant="p" className={classes.center}>{countVisitedParks(ParksList)} / 63</Typography>
                     </div>
+                    {
+                        temp.map((value) => {
+                            return (
+                                <Grid container>
+                                    {
+                                        value.map((innerVal) => {
+                                            return (
+                                                <Grid item xs key={innerVal.index} onClick={() => setVisited(innerVal.index, setData)} >
+                                                    <img src="./np.png" width={"100%"} style={{ filter: innerVal.visited ? 'grayscale(0%)' : 'grayscale(100%)' }} />
+                                                </Grid>
+                                            )
+                                        })
+                                    }
+                                </Grid>
 
-                    {rows.map((elem) => {
-                        return (
-                            <Grid container>
-                                {
-                                    elem.map((innerElem) => {
-                                        return (
-                                            <Grid item xs>
-                                                <div onClick={() => setVisited(innerElem['index'])}>
-                                                    <img src="./np.png" width={"100%"} />
-                                                </div>
-                                            </Grid>
-                                        )
-                                    })
-                                }
-                            </Grid>
-
-                        )
-                    })}
+                            )
+                        })
+                    }
                 </div>
             </Container>
         </>
