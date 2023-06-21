@@ -9,6 +9,7 @@ import MapOutlinedIcon from '@mui/icons-material/MapOutlined';
 import ChecklistOutlinedIcon from '@mui/icons-material/ChecklistOutlined';
 import InsertPhotoOutlinedIcon from '@mui/icons-material/InsertPhotoOutlined';
 import { NPMap } from './NPMap';
+import { NPPoster } from './NPPoster';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -27,7 +28,7 @@ const useStyles = makeStyles((theme) =>
   }),
 );
 
-const theme = createTheme();
+let theme = createTheme();
 
 theme.typography.h3 = {
   fontWeight: "300",
@@ -35,7 +36,7 @@ theme.typography.h3 = {
     fontSize: '1.7rem',
   },
   [theme.breakpoints.up('md')]: {
-    fontSize: '2.5rem',
+    fontSize: '2.3rem',
   },
 };
 
@@ -55,7 +56,7 @@ const App = () => {
         <Grid container className={classes.center}>
           <Grid sm={12} className={classes.center}>
             <ThemeProvider theme={theme}>
-              <Typography variant="h3">You've explored <span style={{ fontWeight: "400", fontSize: "3em" }}>{countVisitedParks(ParksList)}</span>&nbsp; US National Parks!</Typography>
+              <Typography variant="h3">You've explored <span style={{ fontWeight: "400", fontSize: "2.5em" }}>{countVisitedParks(ParksList)}</span>&nbsp; US National Parks!</Typography>
             </ThemeProvider>
           </Grid>
           <Grid sm={12} className={classes.center}>
@@ -81,39 +82,33 @@ const App = () => {
             </Grid>
           </Grid>
 
-          {/* <p>
+          <p>
             Instead of a full US-map, divide into sections and then allow user to select and click on each subregion, then pick national parks
           </p>
           <p>
             Follow this: https://www.freecodecamp.org/news/how-to-make-clickable-svg-map-html-css/
-            <br/>
+            <br />
             and create clickable modal for each region: https://mui.com/material-ui/react-modal/
-            <br/>
+            <br />
             then inside the modal, user can click national parks for each region and marks theme
-            <br/>
+            <br />
             zoom function? maybe???
-            <br/>
-             have some kind of black dot, then if clicked, a tree or pin or something fun
+            <br />
+            have some kind of black dot, then if clicked, a tree or pin or something fun
           </p>
           <p>
             Create regions based on this:
-            <br/>
+            <br />
             https://morethanjustparks.com/wp-content/uploads/2021/10/national-parks-map-corrected2.jpg
-            <br/>
+            <br />
             https://www.nps.gov/aboutus/images/NPS-Unified-Regions-Map.jpg?maxwidth=1300&maxheight=1300&autorotate=false
-            <br/>
+            <br />
             https://www.researchgate.net/profile/Vincent-Santucci/publication/328761204/figure/fig3/AS:689936000888835@1541504969307/Map-showing-the-seven-regions-of-the-US-National-Park-Service.ppm
-          </p> */}
+          </p>
 
         </TabPanel>
         <TabPanel value={value} index={2}>
-          <Grid container className={classes.center}>
-            <Grid sm={12} className={classes.center}>
-              <div style={{ paddingTop: "10px" }}>
-                <img src="/npposter.jpg" width="100%" />
-              </div>
-            </Grid>
-          </Grid>
+          <NPPoster data={data} setData={setData} />
         </TabPanel>
       </Container>
     </>
