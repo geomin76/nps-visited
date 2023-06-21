@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) =>
   }),
 );
 
-const theme = createTheme();
+let theme = createTheme();
 
 theme.typography.h3 = {
   fontWeight: "300",
