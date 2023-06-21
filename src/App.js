@@ -36,7 +36,7 @@ theme.typography.h3 = {
     fontSize: '1.7rem',
   },
   [theme.breakpoints.up('md')]: {
-    fontSize: '2.5rem',
+    fontSize: '2.3rem',
   },
 };
 
@@ -56,7 +56,7 @@ const App = () => {
         <Grid container className={classes.center}>
           <Grid sm={12} className={classes.center}>
             <ThemeProvider theme={theme}>
-              <Typography variant="h3">You've explored <span style={{ fontWeight: "400", fontSize: "3em" }}>{countVisitedParks(ParksList)}</span>&nbsp; US National Parks!</Typography>
+              <Typography variant="h3">You've explored <span style={{ fontWeight: "400", fontSize: "2.5em" }}>{countVisitedParks(ParksList)}</span>&nbsp; US National Parks!</Typography>
             </ThemeProvider>
           </Grid>
           <Grid sm={12} className={classes.center}>
