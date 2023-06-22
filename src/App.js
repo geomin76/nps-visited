@@ -107,10 +107,11 @@ const App = () => {
           </p>
 
         </TabPanel>
-        <TabPanel value={value} index={2}>
-          <NPPoster data={data} setData={setData} />
-        </TabPanel>
       </Container>
+      <TabPanel value={value} index={2}>
+        <NPPoster data={data} setData={setData} />
+        <img src="/npposter.jpg" width="100%" />
+      </TabPanel>
     </>
   );
 }

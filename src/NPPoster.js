@@ -35,11 +35,11 @@ export const NPPoster = ({ data, setData }) => {
 
     return (
         <>
-            <Container maxWidth="xl" style={{ paddingTop: "3%" }}>
-                <div style={{ backgroundColor: "burlywood" }}>
+            <Container style={{ paddingTop: "3%" }}>
+                <div style={{ backgroundColor: "burlywood", paddingBottom: "4%", paddingRight: "3%", paddingLeft: "3%" }}>
                     <div style={{ paddingTop: "7%", paddingBottom: "5%" }}>
                         <ThemeProvider theme={theme}>
-                            <Typography variant="h2" className={classes.center}>US National Parks</Typography>
+                            <Typography variant="h3" className={classes.center}>US National Parks</Typography>
                         </ThemeProvider>
                         <Typography variant="p" className={classes.center}>{countVisitedParks(ParksList)} / 63</Typography>
                     </div>
@@ -51,7 +51,7 @@ export const NPPoster = ({ data, setData }) => {
                                         value.map((innerVal) => {
                                             return (
                                                 <Grid item xs key={innerVal.index} onClick={() => setVisited(innerVal.index, setData)} >
-                                                    <img src="./np.png" width={"100%"} style={{ filter: innerVal.visited ? 'grayscale(0%)' : 'grayscale(100%)' }} />
+                                                    <img src="./np.png" width={"110%"} style={{ filter: innerVal.visited ? 'grayscale(0%)' : 'grayscale(100%)' }} />
                                                 </Grid>
                                             )
                                         })
