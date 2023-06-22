@@ -5,10 +5,10 @@ import { Container, Grid, Typography } from '@material-ui/core';
 import { makeStyles, createStyles, createTheme, ThemeProvider } from '@material-ui/core/styles';
 import { NPList } from './NPList';
 import { Tab, Tabs } from '@mui/material';
-import MapOutlinedIcon from '@mui/icons-material/MapOutlined';
+// import MapOutlinedIcon from '@mui/icons-material/MapOutlined';
 import ChecklistOutlinedIcon from '@mui/icons-material/ChecklistOutlined';
 import InsertPhotoOutlinedIcon from '@mui/icons-material/InsertPhotoOutlined';
-import { NPMap } from './NPMap';
+// import { NPMap } from './NPMap';
 import { NPPoster } from './NPPoster';
 
 const useStyles = makeStyles((theme) =>
@@ -62,8 +62,8 @@ const App = () => {
           <Grid sm={12} className={classes.center}>
             <Tabs value={value} onChange={handleChange}>
               <Tab icon={<ChecklistOutlinedIcon />} {...a11yProps(0)} />
-              <Tab icon={<MapOutlinedIcon />} {...a11yProps(1)} />
-              <Tab icon={<InsertPhotoOutlinedIcon />} {...a11yProps(2)} />
+              {/* <Tab icon={<MapOutlinedIcon />} {...a11yProps(1)} /> */}
+              <Tab icon={<InsertPhotoOutlinedIcon />} {...a11yProps(1)} />
             </Tabs>
           </Grid>
         </Grid>
@@ -75,7 +75,7 @@ const App = () => {
             </Grid>
           </Grid>
         </TabPanel>
-        <TabPanel value={value} index={1}>
+        {/* <TabPanel value={value} index={1}>
           <Grid container className={classes.center}>
             <Grid sm={12} className={classes.center}>
               <NPMap data={data} setData={setData} />
@@ -106,11 +106,12 @@ const App = () => {
             https://www.researchgate.net/profile/Vincent-Santucci/publication/328761204/figure/fig3/AS:689936000888835@1541504969307/Map-showing-the-seven-regions-of-the-US-National-Park-Service.ppm
           </p>
 
-        </TabPanel>
+        </TabPanel> */}
       </Container>
-      <TabPanel value={value} index={2}>
+
+      <TabPanel value={value} index={1}>
         <NPPoster data={data} setData={setData} />
-        <img src="/npposter.jpg" width="100%" />
+        {/* <img src="/npposter.jpg" width="100%" /> */}
       </TabPanel>
     </>
   );

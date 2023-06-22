@@ -35,13 +35,13 @@ export const NPPoster = ({ data, setData }) => {
 
     return (
         <>
-            <Container style={{ paddingTop: "3%" }}>
-                <div style={{ backgroundColor: "burlywood", paddingBottom: "4%", paddingRight: "3%", paddingLeft: "3%" }}>
+            <div style={{ paddingTop: "3%", paddingLeft: "3%", paddingRight: "3%" }}>
+                <div style={{ backgroundColor: "#3e4c4d", paddingBottom: "4%", paddingRight: "3%", paddingLeft: "2%" }}>
                     <div style={{ paddingTop: "7%", paddingBottom: "5%" }}>
                         <ThemeProvider theme={theme}>
-                            <Typography variant="h3" className={classes.center}>US National Parks</Typography>
+                            <Typography variant="h3" style={{color: "white"}} className={classes.center}>US NATIONAL PARKS</Typography>
                         </ThemeProvider>
-                        <Typography variant="p" className={classes.center}>{countVisitedParks(ParksList)} / 63</Typography>
+                        <Typography variant="p" className={classes.center} style={{color: "white"}}>{countVisitedParks(ParksList)} / 63</Typography>
                     </div>
                     {
                         temp.map((value) => {
@@ -62,7 +62,7 @@ export const NPPoster = ({ data, setData }) => {
                         })
                     }
                 </div>
-            </Container>
+            </div>
         </>
     )
 }
