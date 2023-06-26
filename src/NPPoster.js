@@ -1,4 +1,4 @@
-import { Container, Grid, ThemeProvider, Typography, createTheme, responsiveFontSizes } from '@mui/material';
+import { Grid, ThemeProvider, Typography, createTheme } from '@mui/material';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { ParksList, countVisitedParks, setVisited } from './Service';
 import { useEffect, useState } from 'react';
@@ -32,10 +32,6 @@ let theme = createTheme({
         }
     }
 })
-// let theme = createTheme();
-// theme.typography.h3 = {
-//     fontSize: "5vw"
-// }
 
 export const NPPoster = ({ data, setData }) => {
 
@@ -60,14 +56,16 @@ export const NPPoster = ({ data, setData }) => {
 
                     </div>
                     {
-                        temp.map((value) => {
+                        temp.map((value, index) => {
                             return (
-                                <Grid container>
+                                <Grid container key={index}>
                                     {
                                         value.map((innerVal) => {
                                             return (
                                                 <Grid item xs key={innerVal.index} onClick={() => setVisited(innerVal.index, setData)} >
-                                                    <img src="./np.png" width={"110%"} style={{ filter: innerVal.visited ? 'grayscale(0%)' : 'grayscale(100%)' }} />
+                                                    <div style={{ marginBottom: "2%", marginTop: "2%" }}>
+                                                        <img src="./np.png" alt="np.png" width={"110%"} style={{ filter: innerVal.visited ? 'grayscale(0%)' : 'grayscale(100%)' }} />
+                                                    </div>
                                                 </Grid>
                                             )
                                         })
