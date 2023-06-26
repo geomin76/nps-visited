@@ -4,11 +4,11 @@ import { setVisited } from './Service';
 export const NPList = ({ data, setData }) => {
 
   return (
-    <List alignItems="center" disablePadding>
+    <List disablePadding>
       {
-        data.map((value) => {
+        data.map((value, index) => {
           return (
-            <>
+            <div key={index}>
               {
                 value.map((innerVal) => {
                   return (
@@ -24,7 +24,7 @@ export const NPList = ({ data, setData }) => {
                   )
                 })
               }
-            </>
+            </div>
           )
 
         })
