@@ -20,8 +20,22 @@ const useStyles = makeStyles((theme) =>
     }),
 );
 
-let theme = createTheme();
-theme = responsiveFontSizes(theme);
+let theme = createTheme({
+    typography: {
+        h3: {
+            fontSize: "5vw",
+            fontFamily: "PT Sans Caption, sans-serif"
+        },
+        p: {
+            fontSize: "1.8vw",
+            fontFamily: "PT Sans, sans-serif;"
+        }
+    }
+})
+// let theme = createTheme();
+// theme.typography.h3 = {
+//     fontSize: "5vw"
+// }
 
 export const NPPoster = ({ data, setData }) => {
 
@@ -39,9 +53,11 @@ export const NPPoster = ({ data, setData }) => {
                 <div style={{ backgroundColor: "#3e4c4d", paddingBottom: "4%", paddingRight: "3%", paddingLeft: "2%" }}>
                     <div style={{ paddingTop: "7%", paddingBottom: "5%" }}>
                         <ThemeProvider theme={theme}>
-                            <Typography variant="h3" style={{color: "white"}} className={classes.center}>US NATIONAL PARKS</Typography>
+                            <Typography variant="h3" style={{ color: "white" }} className={classes.center}>US NATIONAL PARKS</Typography>
+                            <Typography variant="p" className={classes.center} style={{ color: "white" }}>{countVisitedParks(ParksList)} / 63</Typography>
+
                         </ThemeProvider>
-                        <Typography variant="p" className={classes.center} style={{color: "white"}}>{countVisitedParks(ParksList)} / 63</Typography>
+
                     </div>
                     {
                         temp.map((value) => {
