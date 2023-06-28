@@ -135,7 +135,7 @@ var ParksList = [
             url: './public/crater-lake-national-park_250x.jpg',
             coordinates: '63.33°N 150.50°W',
             visited: false,
-            color: '#dcdbe2',
+            color: '#cbc9d4',
             index: 16
         },
         {
@@ -201,7 +201,7 @@ var ParksList = [
             url: './public/crater-lake-national-park_250x.jpg',
             coordinates: '43.73°N 110.80°W',
             visited: false,
-            color: '#dcdbe2',
+            color: '#a8d0ce',
             index: 24
         },
         {
@@ -357,7 +357,7 @@ var ParksList = [
             url: './public/crater-lake-national-park_250x.jpg',
             coordinates: '46.85°N 121.75°W',
             visited: false,
-            color: '#4a6e30',
+            color: '#bfc0de',
             index: 43
         },
         {
