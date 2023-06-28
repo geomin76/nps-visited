@@ -5,10 +5,8 @@ import { Container, Grid, Typography } from '@material-ui/core';
 import { makeStyles, createStyles, createTheme, ThemeProvider } from '@material-ui/core/styles';
 import { NPList } from './NPList';
 import { Tab, Tabs } from '@mui/material';
-// import MapOutlinedIcon from '@mui/icons-material/MapOutlined';
 import ChecklistOutlinedIcon from '@mui/icons-material/ChecklistOutlined';
 import InsertPhotoOutlinedIcon from '@mui/icons-material/InsertPhotoOutlined';
-// import { NPMap } from './NPMap';
 import { NPPoster } from './NPPoster';
 
 const useStyles = makeStyles((theme) =>
