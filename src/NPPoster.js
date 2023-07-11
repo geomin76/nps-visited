@@ -1,7 +1,9 @@
-import { Grid, ThemeProvider, Typography, createTheme } from '@mui/material';
+import { Button, Container, Grid, ThemeProvider, Typography, createTheme } from '@mui/material';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { ParksList, countVisitedParks, setVisited } from './Service';
 import { useEffect, useState } from 'react';
+import * as htmlToImage from 'html-to-image';
+import download from 'downloadjs';
 
 const useStyles = makeStyles((theme) =>
     createStyles({
@@ -33,6 +35,13 @@ let theme = createTheme({
     }
 })
 
+const downloadFunction = () => {
+    htmlToImage.toPng(document.getElementById('poster'))
+        .then(function (dataUrl) {
+            download(dataUrl, 'poster.png');
+        });
+}
+
 export const NPPoster = ({ data, setData }) => {
 
     const [temp, setTemp] = useState(data);
@@ -45,7 +54,13 @@ export const NPPoster = ({ data, setData }) => {
 
     return (
         <>
-            <div style={{ paddingTop: "3%", paddingLeft: "3%", paddingRight: "3%" }}>
+            <Container>
+                <br/>
+                <div className={classes.center}>
+                    <Button variant="outlined" onClick={() => downloadFunction()}>Download your poster</Button>
+                </div>
+            </Container>
+            <div id="poster" style={{ paddingTop: "3%", paddingLeft: "3%", paddingRight: "3%" }}>
                 <div style={{ backgroundColor: "#3e4c4d", paddingBottom: "4%", paddingRight: "3%", paddingLeft: "2%" }}>
                     <div style={{ paddingTop: "7%", paddingBottom: "5%" }}>
                         <ThemeProvider theme={theme}>
