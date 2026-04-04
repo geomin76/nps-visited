@@ -1,7 +1,6 @@
 import { Button, Container, Grid, ThemeProvider, Typography, createTheme } from '@mui/material';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
-import { ParksList, countVisitedParks, setVisited } from './Service';
-import { useEffect, useState } from 'react';
+import { countVisitedParks, setVisited } from './Service';
 import * as htmlToImage from 'html-to-image';
 import download from 'downloadjs';
 
@@ -11,13 +10,6 @@ const useStyles = makeStyles((theme) =>
             alignItems: 'center',
             justifyContent: 'center',
             display: 'flex'
-        },
-        map: {
-            alignItems: 'center',
-            justifyContent: 'center',
-            display: 'flex',
-            position: 'sticky',
-            top: 0
         },
     }),
 );
@@ -42,15 +34,18 @@ const downloadFunction = () => {
         });
 }
 
+// Chunk flat array into rows of 9 for poster grid
+const chunkArray = (arr, size) => {
+    const chunks = [];
+    for (let i = 0; i < arr.length; i += size) {
+        chunks.push(arr.slice(i, i + size));
+    }
+    return chunks;
+};
+
 export const NPPoster = ({ data, setData }) => {
-
-    const [temp, setTemp] = useState(data);
-
-    useEffect(() => {
-        setTemp(data)
-    }, [data])
-
     const classes = useStyles();
+    const rows = chunkArray(data, 9);
 
     return (
         <>
@@ -65,30 +60,23 @@ export const NPPoster = ({ data, setData }) => {
                     <div style={{ paddingTop: "7%", paddingBottom: "5%" }}>
                         <ThemeProvider theme={theme}>
                             <Typography variant="h3" style={{ color: "white" }} className={classes.center}>US NATIONAL PARKS</Typography>
-                            <Typography variant="p" className={classes.center} style={{ color: "white" }}>{countVisitedParks(ParksList)} / 63</Typography>
-
+                            <Typography variant="p" className={classes.center} style={{ color: "white" }}>{countVisitedParks(data)} / 63</Typography>
                         </ThemeProvider>
-
                     </div>
                     {
-                        temp.map((value, index) => {
-                            return (
-                                <Grid container key={index}>
-                                    {
-                                        value.map((innerVal) => {
-                                            return (
-                                                <Grid item xs key={innerVal.index} onClick={() => setVisited(innerVal.index, setData)} >
-                                                    <div style={{ marginBottom: "2%", marginTop: "2%" }}>
-                                                        <img src="./np.png" alt="np.png" width={"110%"} style={{ filter: innerVal.visited ? 'grayscale(0%)' : 'grayscale(100%)' }} />
-                                                    </div>
-                                                </Grid>
-                                            )
-                                        })
-                                    }
-                                </Grid>
-
-                            )
-                        })
+                        rows.map((row, rowIndex) => (
+                            <Grid container key={rowIndex}>
+                                {
+                                    row.map((park) => (
+                                        <Grid item xs key={park.index} onClick={() => setVisited(park.index, setData)}>
+                                            <div style={{ marginBottom: "2%", marginTop: "2%" }}>
+                                                <img src="./np.png" alt="np.png" width={"110%"} style={{ filter: park.visited ? 'grayscale(0%)' : 'grayscale(100%)' }} />
+                                            </div>
+                                        </Grid>
+                                    ))
+                                }
+                            </Grid>
+                        ))
                     }
                 </div>
             </div>

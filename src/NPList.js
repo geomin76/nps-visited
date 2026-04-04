@@ -1,4 +1,4 @@
-import { List, ListItem, ListItemIcon, Box, ListItemButton } from '@mui/material';
+import { List, ListItem, Box, ListItemButton } from '@mui/material';
 import { setVisited } from './Service';
 
 export const NPList = ({ data, setData }) => {
@@ -6,28 +6,15 @@ export const NPList = ({ data, setData }) => {
   return (
     <List disablePadding>
       {
-        data.map((value, index) => {
-          return (
-            <div key={index}>
-              {
-                value.map((innerVal) => {
-                  return (
-                    <ListItem key={innerVal.index} style={{ paddingTop: "0", paddingBottom: "0" }}>
-                      <ListItemButton onClick={() => setVisited(innerVal.index, setData)}>
-                        <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", height: "75px", width: "295px", borderStyle: "solid", borderWidth: "thin", borderRadius: "10px", backgroundColor: innerVal.visited ? innerVal.color : "white" }}>
-                          <ListItemIcon>
-                            <p>{innerVal.name}</p>
-                          </ListItemIcon>
-                        </Box>
-                      </ListItemButton>
-                    </ListItem>
-                  )
-                })
-              }
-            </div>
-          )
-
-        })
+        data.map((park) => (
+          <ListItem key={park.index} style={{ paddingTop: "0", paddingBottom: "0" }}>
+            <ListItemButton onClick={() => setVisited(park.index, setData)}>
+              <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", height: "75px", width: "295px", borderStyle: "solid", borderWidth: "thin", borderRadius: "10px", backgroundColor: park.visited ? park.color : "white" }}>
+                <p>{park.name}</p>
+              </Box>
+            </ListItemButton>
+          </ListItem>
+        ))
       }
     </List>
   )
