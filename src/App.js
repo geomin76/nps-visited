@@ -1,7 +1,7 @@
 import { ParksList, TabPanel, a11yProps, countVisitedParks, saveVisited } from './Service';
 import React, { useState, useEffect } from 'react';
 import {
-  Container, Grid, Typography, Tab, Tabs, Box,
+  Container, Typography, Tab, Tabs, Box,
   CircularProgress, ThemeProvider, createTheme,
 } from '@mui/material';
 import ChecklistOutlinedIcon from '@mui/icons-material/ChecklistOutlined';
