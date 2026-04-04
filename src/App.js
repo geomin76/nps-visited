@@ -1,45 +1,26 @@
-import './App.css';
 import { ParksList, TabPanel, a11yProps, countVisitedParks, saveVisited } from './Service';
 import React, { useState, useEffect } from 'react';
-import { Container, Grid, Typography } from '@material-ui/core';
-import { makeStyles, createStyles, createTheme, ThemeProvider } from '@material-ui/core/styles';
-import { NPList } from './NPList';
-import { Tab, Tabs } from '@mui/material';
+import {
+  Container, Grid, Typography, Tab, Tabs, Box,
+  CircularProgress, ThemeProvider, createTheme,
+} from '@mui/material';
 import ChecklistOutlinedIcon from '@mui/icons-material/ChecklistOutlined';
-import InsertPhotoOutlinedIcon from '@mui/icons-material/InsertPhotoOutlined';
 import MapOutlinedIcon from '@mui/icons-material/MapOutlined';
-import { NPPoster } from './NPPoster';
+import { NPList } from './NPList';
 import { NPMap } from './NPMap';
 
-const useStyles = makeStyles((theme) =>
-  createStyles({
-    center: {
-      alignItems: 'center',
-      justifyContent: 'center',
-      display: 'flex'
-    },
-  }),
-);
-
-let theme = createTheme();
-
-theme.typography.h3 = {
-  fontWeight: "300",
-  '@media (min-width:700px)': {
-    fontSize: '1.7rem',
+const theme = createTheme({
+  typography: {
+    fontFamily: "'Figtree', sans-serif",
   },
-  [theme.breakpoints.up('md')]: {
-    fontSize: '2.3rem',
-  },
-};
+});
+
+const TOTAL_PARKS = 63;
 
 const App = () => {
-  const classes = useStyles();
-
   const [data, setData] = useState(ParksList);
   const [value, setValue] = useState(0);
 
-  // Persist visited state to localStorage
   useEffect(() => {
     saveVisited(data);
   }, [data]);
@@ -48,41 +29,86 @@ const App = () => {
     setValue(newValue);
   };
 
+  const visitedCount = countVisitedParks(data);
+  const progress = (visitedCount / TOTAL_PARKS) * 100;
+
   return (
-    <>
-      <Container maxWidth="xl">
-        <Grid container className={classes.center}>
-          <Grid sm={12} item className={classes.center}>
-            <ThemeProvider theme={theme}>
-              <Typography variant="h3">You've explored <span style={{ fontWeight: "400", fontSize: "2.5em" }}>{countVisitedParks(data)}</span>&nbsp; US National Parks!</Typography>
-            </ThemeProvider>
-          </Grid>
-          <Grid sm={12} item className={classes.center}>
-            <Tabs value={value} onChange={handleChange}>
-              <Tab icon={<ChecklistOutlinedIcon />} {...a11yProps(0)} />
-              <Tab icon={<InsertPhotoOutlinedIcon />} {...a11yProps(1)} />
-              <Tab icon={<MapOutlinedIcon />} {...a11yProps(2)} />
+    <ThemeProvider theme={theme}>
+      <Box sx={{ minHeight: '100vh', bgcolor: '#f5f5f0' }}>
+        {/* Header */}
+        <Box sx={{
+          bgcolor: '#2e3d2f',
+          color: 'white',
+          pt: 4,
+          pb: 3,
+          textAlign: 'center',
+        }}>
+          <Box sx={{ position: 'relative', display: 'inline-flex', mb: 2 }}>
+            <CircularProgress
+              variant="determinate"
+              value={100}
+              size={100}
+              thickness={3}
+              sx={{ color: 'rgba(255,255,255,0.15)', position: 'absolute' }}
+            />
+            <CircularProgress
+              variant="determinate"
+              value={progress}
+              size={100}
+              thickness={3}
+              sx={{ color: '#8fbc8f' }}
+            />
+            <Box sx={{
+              position: 'absolute', top: 0, left: 0, bottom: 0, right: 0,
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+            }}>
+              <Typography variant="h4" sx={{ fontWeight: 700, color: 'white' }}>
+                {visitedCount}
+              </Typography>
+            </Box>
+          </Box>
+          <Typography variant="h5" sx={{ fontWeight: 300, letterSpacing: 1 }}>
+            of {TOTAL_PARKS} US National Parks explored
+          </Typography>
+        </Box>
+
+        {/* Tabs */}
+        <Box sx={{
+          bgcolor: 'white',
+          boxShadow: '0 1px 3px rgba(0,0,0,0.08)',
+          position: 'sticky',
+          top: 0,
+          zIndex: 1000,
+        }}>
+          <Container maxWidth="md">
+            <Tabs
+              value={value}
+              onChange={handleChange}
+              centered
+              sx={{
+                '& .MuiTab-root': { textTransform: 'none', fontWeight: 500, minHeight: 56 },
+                '& .Mui-selected': { color: '#2e3d2f' },
+                '& .MuiTabs-indicator': { backgroundColor: '#2e3d2f' },
+              }}
+            >
+              <Tab icon={<ChecklistOutlinedIcon />} label="List" iconPosition="start" {...a11yProps(0)} />
+              <Tab icon={<MapOutlinedIcon />} label="Map" iconPosition="start" {...a11yProps(1)} />
             </Tabs>
-          </Grid>
-        </Grid>
+          </Container>
+        </Box>
 
+        {/* Content */}
         <TabPanel value={value} index={0}>
-          <Grid container className={classes.center}>
-            <Grid sm={12} item className={classes.center}>
-              <NPList data={data} setData={setData} />
-            </Grid>
-          </Grid>
+          <Container maxWidth="lg" sx={{ py: 3 }}>
+            <NPList data={data} setData={setData} />
+          </Container>
         </TabPanel>
-      </Container>
 
-      <TabPanel value={value} index={1}>
-        <NPPoster data={data} setData={setData} />
-      </TabPanel>
-
-      <TabPanel value={value} index={2}>
-        <NPMap data={data} setData={setData} />
-      </TabPanel>
-    </>
+        <TabPanel value={value} index={1}>
+          <NPMap data={data} setData={setData} />
+        </TabPanel>
+      </Box>
+    </ThemeProvider>
   );
 }
 
