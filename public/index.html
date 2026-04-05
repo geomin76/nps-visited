@@ -3,25 +3,29 @@
 
 <head>
   <meta charset="utf-8" />
-  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" sizes="any" />
+  <link rel="icon" href="%PUBLIC_URL%/logo.svg" type="image/svg+xml" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#000000" />
-  <meta name="description" content="Web site created using create-react-app" />
-  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-  <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-  <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
+  <meta name="theme-color" content="#2e7d32" />
+  <title>Visit All 63 National Parks | Track Your National Park Visits | VisitAll63</title>
+  <meta name="description" content="Track and check off all 63 US national parks you've visited. From Acadia to Zion, use our interactive checklist and map to plan your journey to visit all 63 national parks." />
+  <meta name="keywords" content="national parks, visit all 63 national parks, 63 national parks, national park checklist, national park tracker, US national parks, national park map, Yellowstone, Yosemite, Grand Canyon, Zion, Glacier, Acadia, Great Smoky Mountains, Rocky Mountain, Joshua Tree, Grand Teton, Denali, Olympic, Arches, Bryce Canyon, Death Valley, Everglades, Sequoia, Redwood, Mount Rainier, Shenandoah, Canyonlands, Capitol Reef, Crater Lake, Big Bend, Badlands, Mesa Verde, Petrified Forest, Mammoth Cave, Hot Springs, Dry Tortugas, Channel Islands, Pinnacles, White Sands, Indiana Dunes, New River Gorge, Gateway Arch, Congaree, Isle Royale, Voyageurs, North Cascades, Lassen Volcanic, Great Basin, Guadalupe Mountains, Black Canyon of the Gunnison, Carlsbad Caverns, Saguaro, Theodore Roosevelt, Wind Cave, Great Sand Dunes, Kenai Fjords, Katmai, Lake Clark, Kobuk Valley, Gates of the Arctic, Wrangell-St. Elias, Glacier Bay, Biscayne, Virgin Islands, Haleakala, Hawaii Volcanoes, American Samoa, Cuyahoga Valley, Kings Canyon" />
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
+  <!-- Open Graph / Social Media -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Visit All 63 National Parks | VisitAll63" />
+  <meta property="og:description" content="Track and check off all 63 US national parks. Interactive checklist and map to plan your journey to every national park." />
+  <meta property="og:image" content="%PUBLIC_URL%/logo512.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Visit All 63 National Parks | VisitAll63" />
+  <meta name="twitter:description" content="Track and check off all 63 US national parks. Interactive checklist and map to plan your journey to every national park." />
+  <meta name="twitter:image" content="%PUBLIC_URL%/logo512.png" />
+
+  <link rel="canonical" href="https://visitall63.com" />
+  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,21 +33,73 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=PT+Sans&family=PT+Sans+Caption:wght@700&display=swap"
     rel="stylesheet">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WMJWSDBQ22"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-WMJWSDBQ22');
+  </script>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "VisitAll63",
+    "description": "Track and check off all 63 US national parks you've visited. Interactive checklist and map to help you visit all 63 national parks.",
+    "url": "https://visitall63.com",
+    "applicationCategory": "TravelApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "about": {
+      "@type": "ItemList",
+      "name": "All 63 US National Parks",
+      "numberOfItems": 63,
+      "itemListElement": [
+        "Acadia National Park", "American Samoa National Park", "Arches National Park",
+        "Badlands National Park", "Big Bend National Park", "Biscayne National Park",
+        "Black Canyon of the Gunnison National Park", "Bryce Canyon National Park",
+        "Canyonlands National Park", "Capitol Reef National Park", "Carlsbad Caverns National Park",
+        "Channel Islands National Park", "Congaree National Park", "Crater Lake National Park",
+        "Cuyahoga Valley National Park", "Death Valley National Park", "Denali National Park",
+        "Dry Tortugas National Park", "Everglades National Park", "Gates of the Arctic National Park",
+        "Gateway Arch National Park", "Glacier National Park", "Glacier Bay National Park",
+        "Grand Canyon National Park", "Grand Teton National Park", "Great Basin National Park",
+        "Great Sand Dunes National Park", "Great Smoky Mountains National Park",
+        "Guadalupe Mountains National Park", "Haleakala National Park", "Hawaii Volcanoes National Park",
+        "Hot Springs National Park", "Indiana Dunes National Park", "Isle Royale National Park",
+        "Joshua Tree National Park", "Katmai National Park", "Kenai Fjords National Park",
+        "Kings Canyon National Park", "Kobuk Valley National Park", "Lake Clark National Park",
+        "Lassen Volcanic National Park", "Mammoth Cave National Park", "Mesa Verde National Park",
+        "Mount Rainier National Park", "New River Gorge National Park", "North Cascades National Park",
+        "Olympic National Park", "Petrified Forest National Park", "Pinnacles National Park",
+        "Redwood National Park", "Rocky Mountain National Park", "Saguaro National Park",
+        "Sequoia National Park", "Shenandoah National Park", "Theodore Roosevelt National Park",
+        "Virgin Islands National Park", "Voyageurs National Park", "White Sands National Park",
+        "Wind Cave National Park", "Wrangell-St. Elias National Park", "Yellowstone National Park",
+        "Yosemite National Park", "Zion National Park"
+      ]
+    }
+  }
+  </script>
 </head>
 
 <body>
-  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <noscript>
+    <h1>Visit All 63 National Parks - VisitAll63</h1>
+    <p>Track your visits to all 63 US national parks. Enable JavaScript to use the interactive checklist and map.</p>
+    <h2>All 63 National Parks</h2>
+    <p>Acadia, American Samoa, Arches, Badlands, Big Bend, Biscayne, Black Canyon of the Gunnison, Bryce Canyon, Canyonlands, Capitol Reef, Carlsbad Caverns, Channel Islands, Congaree, Crater Lake, Cuyahoga Valley, Death Valley, Denali, Dry Tortugas, Everglades, Gates of the Arctic, Gateway Arch, Glacier, Glacier Bay, Grand Canyon, Grand Teton, Great Basin, Great Sand Dunes, Great Smoky Mountains, Guadalupe Mountains, Haleakala, Hawaii Volcanoes, Hot Springs, Indiana Dunes, Isle Royale, Joshua Tree, Katmai, Kenai Fjords, Kings Canyon, Kobuk Valley, Lake Clark, Lassen Volcanic, Mammoth Cave, Mesa Verde, Mount Rainier, New River Gorge, North Cascades, Olympic, Petrified Forest, Pinnacles, Redwood, Rocky Mountain, Saguaro, Sequoia, Shenandoah, Theodore Roosevelt, Virgin Islands, Voyageurs, White Sands, Wind Cave, Wrangell-St. Elias, Yellowstone, Yosemite, Zion</p>
+  </noscript>
   <div id="root"></div>
-  <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
 </body>
 
 </html>

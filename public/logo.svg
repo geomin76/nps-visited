@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Tree canopy layers -->
+  <polygon points="256,40 160,200 352,200" fill="#2e7d32"/>
+  <polygon points="256,100 140,280 372,280" fill="#388e3c"/>
+  <polygon points="256,170 120,360 392,360" fill="#43a047"/>
+  <!-- Trunk -->
+  <rect x="228" y="340" width="56" height="130" rx="6" fill="#5D4037"/>
+</svg>
