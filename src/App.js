@@ -1,13 +1,14 @@
 import { ParksList, TabPanel, a11yProps, countVisitedParks, saveVisited } from './Service';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   Container, Typography, Tab, Tabs, Box,
-  CircularProgress, ThemeProvider, createTheme,
+  CircularProgress, ThemeProvider, createTheme, Dialog, DialogContent,
 } from '@mui/material';
 import ChecklistOutlinedIcon from '@mui/icons-material/ChecklistOutlined';
 import MapOutlinedIcon from '@mui/icons-material/MapOutlined';
 import { NPList } from './NPList';
 import { NPMap } from './NPMap';
+import confetti from 'canvas-confetti';
 
 const theme = createTheme({
   typography: {
@@ -20,17 +21,34 @@ const TOTAL_PARKS = 63;
 const App = () => {
   const [data, setData] = useState(ParksList);
   const [value, setValue] = useState(0);
+  const [showCongrats, setShowCongrats] = useState(false);
+  const prevVisitedCount = useRef(countVisitedParks(ParksList));
 
   useEffect(() => {
     saveVisited(data);
   }, [data]);
 
+  const visitedCount = countVisitedParks(data);
+  const progress = (visitedCount / TOTAL_PARKS) * 100;
+
+  useEffect(() => {
+    if (visitedCount === TOTAL_PARKS && prevVisitedCount.current < TOTAL_PARKS) {
+      setShowCongrats(true);
+      const duration = 4000;
+      const end = Date.now() + duration;
+      const frame = () => {
+        confetti({ particleCount: 3, angle: 60, spread: 55, origin: { x: 0 } });
+        confetti({ particleCount: 3, angle: 120, spread: 55, origin: { x: 1 } });
+        if (Date.now() < end) requestAnimationFrame(frame);
+      };
+      frame();
+    }
+    prevVisitedCount.current = visitedCount;
+  }, [visitedCount]);
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
-  const visitedCount = countVisitedParks(data);
-  const progress = (visitedCount / TOTAL_PARKS) * 100;
 
   return (
     <ThemeProvider theme={theme}>
@@ -96,6 +114,27 @@ const App = () => {
             </Tabs>
           </Container>
         </Box>
+
+        {/* Congrats Dialog */}
+        <Dialog
+          open={showCongrats}
+          onClose={() => setShowCongrats(false)}
+          PaperProps={{
+            sx: {
+              textAlign: 'center', p: 4, borderRadius: 3,
+              bgcolor: '#2e3d2f', color: 'white',
+            }
+          }}
+        >
+          <DialogContent>
+            <Typography variant="h4" sx={{ fontWeight: 700, mb: 2 }}>
+              Congratulations!
+            </Typography>
+            <Typography variant="h6" sx={{ fontWeight: 300 }}>
+              You've visited all 63 US National Parks!
+            </Typography>
+          </DialogContent>
+        </Dialog>
 
         {/* Content */}
         <TabPanel value={value} index={0}>
